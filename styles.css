@@ -1,0 +1,33 @@
+.modtype_labelcollapsed .lc_section {
+    cursor: pointer;
+}
+
+.modtype_labelcollapsed .lc_section span {
+    font-weight: normal;
+}
+
+.modtype_labelcollapsed .lc_section.collapsed::after {
+    font-family: "FontAwesome";
+    font-weight: 400;
+    position: absolute;
+    margin-left: 8px;
+    line-height: 32px;
+    color: darkgray;
+    font: var(--fa-font-solid);
+    content: "\f0a9";
+    font-size: 30px;
+}
+
+.modtype_labelcollapsed .lc_section::after {
+    font-family: "FontAwesome";
+    font-weight: 400;
+    font-size: 60px;
+    position: absolute;
+    margin-left: 8px;
+    line-height: 32px;
+    color: dimgray;
+    font: var(--fa-font-solid);
+    content: "\f0ab";
+    font-size: 30px;
+}
+
