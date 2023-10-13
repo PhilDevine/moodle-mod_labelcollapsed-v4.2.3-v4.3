@@ -21,7 +21,6 @@
 .modtype_labelcollapsed .lc_section::after {
     font-family: "FontAwesome";
     font-weight: 400;
-    font-size: 60px;
     position: absolute;
     margin-left: 8px;
     line-height: 32px;
