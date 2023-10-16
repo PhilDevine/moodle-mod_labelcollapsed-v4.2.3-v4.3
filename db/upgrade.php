@@ -42,46 +42,32 @@
 // Please do not forget to use upgrade_set_timeout()
 // before any action that may take longer time to finish.
 
-defined('MOODLE_INTERNAL') || die;
+function xmldb_labelcollapsed_upgrade($oldversion): bool {
+    global $DB;
+    $dbman = $DB->get_manager();
 
-function xmldb_labelcollapsed_upgrade($oldversion) {
-    global $CFG;
-    
-    // Automatically generated Moodle v2.9.0 release upgrade line.
-    // Put any upgrade step following this.
-    
-    // Automatically generated Moodle v3.0.0 release upgrade line.
-    // Put any upgrade step following this.
-    
-    // Automatically generated Moodle v3.1.0 release upgrade line.
-    // Put any upgrade step following this.
-    
-    // Automatically generated Moodle v3.2.0 release upgrade line.
-    // Put any upgrade step following this.
-    
-    // Automatically generated Moodle v3.3.0 release upgrade line.
-    // Put any upgrade step following this.
-    
-    // Automatically generated Moodle v3.4.0 release upgrade line.
-    // Put any upgrade step following this.
+    if ($oldversion < 2023101303) {
+        $table = new xmldb_table('labelcollapsed');
+        if ($dbman->table_exists($table)) {
+            $field = new xmldb_field('labelsection', XMLDB_TYPE_TEXT, '255', null, false);
+            if ($dbman->field_exists($table, $field)) {
+                $dbman->change_field_type($table, $field);
+            } else {
+                $dbman->add_field($table, $field);
+            }
 
-    // Automatically generated Moodle v3.5.0 release upgrade line.
-    // Put any upgrade step following this.
+            $field = new xmldb_field('sectioncolor', XMLDB_TYPE_CHAR, '7', null, false);
+            if (!$dbman->field_exists($table, $field)) {
+                $dbman->add_field($table, $field);
+            }
 
-    // Automatically generated Moodle v3.6.0 release upgrade line.
-    // Put any upgrade step following this.
-
-    // Automatically generated Moodle v3.7.0 release upgrade line.
-    // Put any upgrade step following this.
-
-    // Automatically generated Moodle v3.8.0 release upgrade line.
-    // Put any upgrade step following this.
-
-    // Automatically generated Moodle v3.9.0 release upgrade line.
-    // Put any upgrade step following this.
-
-    // Automatically generated Moodle v3.10.0 release upgrade line.
-    // Put any upgrade step following this.
+            $field = new xmldb_field('sectionbgcolor', XMLDB_TYPE_CHAR, '7', null, false);
+            if (!$dbman->field_exists($table, $field)) {
+                $dbman->add_field($table, $field);
+            }
+        }
+        upgrade_mod_savepoint(true, 2023101303, 'labelcollapsed');
+    }
 
     return true;
 }
