@@ -37,13 +37,13 @@ class backup_labelcollapsed_activity_structure_step extends backup_activity_stru
         $userinfo = $this->get_setting_value('userinfo');
 
         // Define each element separated.
-        $labelcollapsed = new backup_nested_element('labelcollapsed', array('id'), array(
-            'labelsection', 'sectioncolor', 'sectionbgcolor', 'name', 'intro', 'introformat', 'timemodified'));
+        $labelcollapsed = new backup_nested_element('labelcollapsed', ['id'], [
+            'labelsection', 'sectioncolor', 'sectionbgcolor', 'name', 'intro', 'introformat', 'timemodified', ]);
 
         // Build the tree.
 
         // Define sources.
-        $labelcollapsed->set_source_table('labelcollapsed', array('id' => backup::VAR_ACTIVITYID));
+        $labelcollapsed->set_source_table('labelcollapsed', ['id' => backup::VAR_ACTIVITYID]);
 
         // Define id annotations.
         // None.
