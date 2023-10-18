@@ -24,13 +24,13 @@
  * @author     Phil Devine <p.devine@lancaster.ac.uk>
  */
 
-require_once("../../config.php");
+require_once(dirname(__FILE__, 3) . '/config.php');
 require_login();
 require_once("lib.php");
 
 $id = required_param('id', PARAM_INT);
 
-$PAGE->set_url('/mod/labelcollapsed/index.php', array('id' => $id));
+$PAGE->set_url('/mod/labelcollapsed/index.php', ['id' => $id]);
 
 $PAGE->requires->jquery();
 

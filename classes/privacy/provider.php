@@ -25,7 +25,7 @@
  */
 namespace mod_labelcollapsed\privacy;
 
-defined('MOODLE_INTERNAL') || die();
+use core_privacy\local\metadata\null_provider;
 
 /**
  * The mod_label module does not store any data.
@@ -36,7 +36,7 @@ defined('MOODLE_INTERNAL') || die();
  * The mod_labelcollapsed module does not store any data.
  * Edit mod_labelcollapsed 2019 Phil Devine <p.devine@lancaster.ac.uk>
  */
-class provider implements \core_privacy\local\metadata\null_provider {
+class provider implements null_provider {
     /**
      * Get the language string identifier with the component's language
      * file to explain why this plugin stores no data.

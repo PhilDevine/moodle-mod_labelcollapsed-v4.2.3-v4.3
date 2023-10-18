@@ -22,35 +22,35 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once("../../config.php");
+require_once(dirname(__FILE__, 3) . '/config.php');
 
 $id = optional_param('id', 0, PARAM_INT);    // Course Module ID, or.
 $l = optional_param('l', 0, PARAM_INT);     // Labelcollapsed ID.
 
 if ($id) {
-    $PAGE->set_url('/mod/labelcollapsed/index.php', array('id' => $id));
+    $PAGE->set_url('/mod/labelcollapsed/index.php', ['id' => $id]);
     if (! $cm = get_coursemodule_from_id('labelcollapsed', $id)) {
-        print_error('invalidcoursemodule');
+        new moodle_exception('invalidcoursemodule');
     }
 
-    if (! $course = $DB->get_record("course", array("id" => $cm->course))) {
-        print_error('coursemisconf');
+    if (! $course = $DB->get_record("course", ["id" => $cm->course])) {
+        new moodle_exception('coursemisconf');
     }
 
-    if (! $labelcollapsed = $DB->get_record("labelcollapsed", array("id" => $cm->instance))) {
-        print_error('invalidcoursemodule');
+    if (! $labelcollapsed = $DB->get_record("labelcollapsed", ["id" => $cm->instance])) {
+        new moodle_exception('invalidcoursemodule');
     }
 
 } else {
-    $PAGE->set_url('/mod/labelcollapsed/index.php', array('l' => $l));
-    if (! $labelcollapsed = $DB->get_record("labelcollapsed", array("id" => $l))) {
-        print_error('invalidcoursemodule');
+    $PAGE->set_url('/mod/labelcollapsed/index.php', ['l' => $l]);
+    if (! $labelcollapsed = $DB->get_record("labelcollapsed", ["id" => $l])) {
+        new moodle_exception('invalidcoursemodule');
     }
-    if (! $course = $DB->get_record("course", array("id" => $labelcollapsed->course)) ) {
-        print_error('coursemisconf');
+    if (! $course = $DB->get_record("course", ["id" => $labelcollapsed->course]) ) {
+        new moodle_exception('coursemisconf');
     }
     if (! $cm = get_coursemodule_from_instance("labelcollapsed", $labelcollapsed->id, $course->id)) {
-        print_error('invalidcoursemodule');
+        new moodle_exception('invalidcoursemodule');
     }
 }
 

@@ -27,7 +27,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$logs = array(
-    array('module' => 'labelcollapsed', 'action' => 'add', 'mtable' => 'labelcollapsed', 'field' => 'name'),
-    array('module' => 'labelcollapsed', 'action' => 'update', 'mtable' => 'labelcollapsed', 'field' => 'name'),
-);
+$logs = [
+    ['module' => 'labelcollapsed', 'action' => 'add', 'mtable' => 'labelcollapsed', 'field' => 'name'],
+    ['module' => 'labelcollapsed', 'action' => 'update', 'mtable' => 'labelcollapsed', 'field' => 'name'],
+];

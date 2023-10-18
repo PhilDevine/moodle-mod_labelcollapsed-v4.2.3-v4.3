@@ -32,14 +32,14 @@ class restore_labelcollapsed_activity_structure_step extends restore_activity_st
 
     protected function define_structure() {
 
-        $paths = array();
+        $paths = [];
         $paths[] = new restore_path_element('labelcollapsed', '/activity/labelcollapsed');
 
         // Return the paths wrapped into standard activity structure.
         return $this->prepare_activity_structure($paths);
     }
 
-    protected function process_labelcollapsed($data) {
+    protected function process_labelcollapsed($data): void {
         global $DB;
 
         $data = (object)$data;
@@ -52,7 +52,7 @@ class restore_labelcollapsed_activity_structure_step extends restore_activity_st
         $this->apply_activity_instance($newitemid);
     }
 
-    protected function after_execute() {
+    protected function after_execute(): void {
         // Add labelcollapsed related files, no need to match by itemname (just internally handled context).
         $this->add_related_files('mod_labelcollapsed', 'intro', null);
     }
