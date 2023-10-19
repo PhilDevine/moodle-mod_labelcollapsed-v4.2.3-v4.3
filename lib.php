@@ -24,6 +24,8 @@
  * @author     Phil Devine <p.devine@lancaster.ac.uk>
  */
 
+use mod_labelcollapsed\output\content_view;
+
 defined('MOODLE_INTERNAL') || die;
 
 
@@ -91,12 +93,14 @@ function labelcollapsed_delete_instance($id) {
  * on corse page.
  * @param cm_info $cm
  */
-function labelcollapsed_cm_info_view(cm_info $cm) {
+function labelcollapsed_cm_info_view(cm_info $cm): void {
+    global $PAGE, $USER;
 
-    require_once(dirname(__FILE__).'/locallib.php');
-    $content = labelcollapsed_get_html_content($cm);
-    $cm->set_content($content, true);
-
+    if (!$USER->editing) { // Only render content if not editing.
+        $output = $PAGE->get_renderer('mod_labelcollapsed');
+        $renderable = new content_view($cm->instance, $cm->id);
+        $cm->set_content($output->render_content_view($renderable));
+    }
 }
 
 /**
@@ -121,6 +125,8 @@ function labelcollapsed_get_extra_capabilities() {
  * @return bool|null True if module supports feature, false if not, null if doesn't know
  */
 function labelcollapsed_supports($feature) {
+    global $USER;
+
     switch($feature) {
         case FEATURE_IDNUMBER:
             return false;
@@ -128,8 +134,6 @@ function labelcollapsed_supports($feature) {
             return false;
         case FEATURE_GROUPINGS:
             return false;
-        case FEATURE_GROUPMEMBERSONLY:
-            return true;
         case FEATURE_MOD_INTRO:
             return true;
         case FEATURE_COMPLETION_TRACKS_VIEWS:
@@ -143,8 +147,8 @@ function labelcollapsed_supports($feature) {
         case FEATURE_BACKUP_MOODLE2:
             return true;
         case FEATURE_NO_VIEW_LINK:
-            return true;
-        case FEATURE_MOD_PURPOSE:             
+            return !($USER->editing || key_exists('wsfunction',$_REQUEST)); // ... validation is done in title.php
+        case FEATURE_MOD_PURPOSE:
             return MOD_PURPOSE_CONTENT;
         default:
             return null;
