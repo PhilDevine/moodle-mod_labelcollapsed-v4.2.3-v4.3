@@ -73,6 +73,8 @@ class mod_labelcollapsed_mod_form extends moodleform_mod {
         // Add validation rule.
         $mform->addRule('sectionbgcolor', get_string('validateerror', 'admin'), 'mod_labelcollapsed_colourpicker_rule');
 
+        $mform->addElement('text', 'name', get_string('labelcollapsedheader', 'labelcollapsed'), ['size' => '64']);
+
         $this->standard_intro_elements();
 
         $this->standard_coursemodule_elements();
