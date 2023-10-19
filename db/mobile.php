@@ -13,28 +13,19 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+defined('MOODLE_INTERNAL') || die();
 
-namespace mod_labelcollapsed\output;
+$addons = [
+    'mod_labelcollapsed' => [
+        'handlers' => [
+            'mobile_view' => [
+                'displaydata' => [
+                    'icon' => $CFG->wwwroot . '/mod/labelcollapsed/pix/monologo.png',
+                ],
+                'delegate' => 'CoreCourseModuleDelegate',
+                'method' => 'mobile_view',
+            ],
+        ],
+    ],
+];
 
-use renderable;
-use renderer_base;
-use stdClass;
-use templatable;
-
-class content_view implements renderable, templatable {
-    private int $instanceid;
-    private int $id;
-
-    public function __construct($instanceid, $id) {
-        $this->instanceid = $instanceid;
-        $this->id = $id;
-    }
-
-    public function export_for_template(renderer_base $output): stdClass {
-        global $DB;
-
-        $data = $DB->get_record('labelcollapsed', ['id' => $this->instanceid]);
-        $data->intro = format_module_intro('labelcollapsed', $data, $this->id);
-        return $data;
-    }
-}

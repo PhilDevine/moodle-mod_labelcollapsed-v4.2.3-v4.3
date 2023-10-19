@@ -98,7 +98,7 @@ function labelcollapsed_cm_info_view(cm_info $cm): void {
 
     if (!$USER->editing) { // Only render content if not editing.
         $output = $PAGE->get_renderer('mod_labelcollapsed');
-        $renderable = new content_view($cm);
+        $renderable = new content_view($cm->instance, $cm->id);
         $cm->set_content($output->render_content_view($renderable));
     }
 }
@@ -147,7 +147,7 @@ function labelcollapsed_supports($feature) {
         case FEATURE_BACKUP_MOODLE2:
             return true;
         case FEATURE_NO_VIEW_LINK:
-            return !$USER->editing; // ... validation is done in title.php
+            return !($USER->editing || key_exists('wsfunction',$_REQUEST)); // ... validation is done in title.php
         case FEATURE_MOD_PURPOSE:
             return MOD_PURPOSE_CONTENT;
         default:
