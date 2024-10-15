@@ -30,11 +30,14 @@ require_once($CFG->dirroot.'/course/moodleform_mod.php');
 
 $PAGE->requires->jquery();
 $PAGE->requires->js('/mod/labelcollapsed/js/colourpicker/jquery.simplecolorpicker.min.js', true);
-$PAGE->requires->css('/mod/labelcollapsed/simplecolorpicker.css');
 
 class mod_labelcollapsed_mod_form extends moodleform_mod {
 
     public function definition() {
+        global $PAGE;
+
+        $PAGE->requires->css('/mod/labelcollapsed/simplecolorpicker.css');
+
         $mform = $this->_form;
         $mform->addElement('html', '<div class="form-group row  fitem">');
         $mform->addElement('html', '<div class="col-md-3"><label for="id_sectioncolor_choice">');
