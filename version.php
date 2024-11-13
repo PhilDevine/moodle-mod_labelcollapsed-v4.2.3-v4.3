@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die;
 
 $plugin->release = 'v4.3-r1';
 $plugin->maturity = MATURITY_BETA;
-$plugin->version  = 2023101302;  // The current module version (Date: YYYYMMDDXX).
+$plugin->version  = 2023101303;  // The current module version (Date: YYYYMMDDXX).
 $plugin->requires = 2023041800;  // Requires this Moodle version.
 $plugin->cron     = 0;           // Period for cron to check this module (secs).
 $plugin->component = 'mod_labelcollapsed';
