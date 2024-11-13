@@ -6,27 +6,18 @@
     font-weight: normal;
 }
 
-.modtype_labelcollapsed .lc_section.collapsed::after {
-    font-family: "FontAwesome";
-    font-weight: 400;
-    position: absolute;
-    margin-left: 8px;
-    line-height: 32px;
-    color: darkgray;
-    font: var(--fa-font-solid);
-    content: "\f0a9";
-    font-size: 30px;
+.modtype_labelcollapsed .lc_section[aria-expanded="true"]::after {
+    transform: rotateZ(90deg);
 }
 
 .modtype_labelcollapsed .lc_section::after {
     font-family: "FontAwesome";
     font-weight: 400;
+    font: var(--fa-font-solid);
+    font-size: 25px;
     position: absolute;
     margin-left: 8px;
-    line-height: 32px;
-    color: dimgray;
-    font: var(--fa-font-solid);
-    content: "\f0ab";
-    font-size: 30px;
+    color: darkgray;
+    content: "\f0a9";
+    transition: all 0.5s ease;
 }
-
